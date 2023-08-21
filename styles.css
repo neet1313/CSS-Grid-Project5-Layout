@@ -1,0 +1,315 @@
+/* 
+-------------
+-------------
+  VARIABLES
+-------------
+-------------
+*/
+
+:root {
+  --primary-color: #f15025;
+  --mainBlack: #222;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --darkGrey: #afafaf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.2rem;
+  --padding0: 0;
+  --padding1: 1rem;
+  --padding2: 2rem;
+  --padding3: 3rem;
+}
+
+/* 
+-------------
+-------------
+  Global styles
+-------------
+-------------
+*/
+
+* {
+  padding: var(--padding0);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Fira Code", monospace;
+  color: var(--mainBlack);
+  line-height: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+h1 {
+  /* Remove in MQ */
+  font-size: 1.5rem;
+}
+
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 0.5rem var(--padding1);
+  text-transform: capitalize;
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+  margin: 3rem;
+}
+
+.btn:hover {
+  transition: var(--mainTransition);
+  background: var(--primary-color);
+  color: var(--mainWhite);
+}
+
+/*-------------
+-------------
+  CARDS
+-------------
+-------------
+*/
+
+.title {
+  text-align: center;
+  width: 100vw;
+  min-width: 375px;
+  padding: var(--padding3) var(--padding0);
+}
+
+.cards-center {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1170px;
+  width: 80vw;
+}
+
+.card-info {
+  padding: var(--padding1);
+}
+
+.card-footer {
+  padding-bottom: var(--padding1);
+}
+
+.card-info p {
+  padding-top: var(--padding1);
+  font-size: medium;
+}
+
+.card {
+  border: 1px solid var(--darkGrey);
+  margin-bottom: 2rem;
+}
+
+.card-footer {
+  background: var(--darkGrey);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0.5rem 1rem;
+}
+
+.card-footer span {
+  color: var(--primary-color);
+}
+
+/* ----------- GRID COLUMN LAYOUT WITH MEDIA QUERIES -------- */
+
+/* @media screen and (min-width: 768px) {
+  .card {
+    margin-bottom: 0;
+  }
+  .cards-center {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .title h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .cards-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+/* ------ GRID COLUMN LAYOUT WITH minmax AND auto-fill ---- */
+
+/* (1170px - total column gap) / No. of columns */
+/* (1170px - 96px) / 4 = 268.5px  ----> Width of one card */
+
+.cards-center {
+  display: grid;
+  column-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(268.5px, 1fr));
+}
+
+/* Setting up ROW HEIGHT if content of one of the cards is more. */
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/*-------------
+-------------
+  LAYOUT
+-------------
+-------------
+*/
+
+/* ------- header -------- */
+.header {
+  padding: var(--padding2) var(--padding1);
+  background: var(--primary-color);
+  text-align: center;
+  color: var(--mainWhite);
+}
+
+/* ------ navbar -------- */
+.navbar {
+  background: var(--darkGrey);
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  padding: 0.5rem var(--padding1);
+}
+
+.navbar li {
+  list-style: none;
+  padding: 0.25rem 0;
+  letter-spacing: var(--mainSpacing);
+}
+.navbar a {
+  color: var(--mainBlack);
+}
+
+/* ----- content ------- */
+.content {
+  padding: var(--padding2);
+}
+
+.content p {
+  font-size: 1rem;
+}
+
+/*------- sidebar --------*/
+.sidebar {
+  background: var(--primary-color);
+  padding: var(--padding1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  color: var(--mainWhite);
+  font-size: 1.25rem;
+}
+
+/*----- footer ------ */
+.footer {
+  background: var(--mainBlack);
+  color: var(--mainWhite);
+  padding: var(--padding1) 0;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+@media screen and (min-width: 768px) {
+  .header,
+  .sidebar,
+  .navbar a {
+    font-size: 1.5rem;
+  }
+  .content p,
+  .footer p {
+    font-size: 1.15rem;
+  }
+  .navbar ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  /* start layout of page */
+  .main {
+    grid-template-columns: [start] 200px [col1-end] 1fr [col2-end] 50px[end];
+    grid-template-rows: [start] auto [row1-end] 1fr [row2-end] auto[end];
+  }
+  .header {
+    grid-column: start/end;
+    grid-row: start/row1-end;
+  }
+  .navbar {
+    grid-column: start/col1-end;
+    grid-row: row1-end/row2-end;
+    padding: 0;
+  }
+  .content {
+    grid-column: col1-end/col2-end;
+    grid-row: row1-end/row2-end;
+  }
+  .sidebar {
+    grid-column: col2-end/end;
+    grid-row: row1-end/row2-end;
+    padding: 0;
+  }
+  .footer {
+    grid-column: start/end;
+    grid-row: row2-end/end;
+  }
+  /* end layout of page */
+
+  .navbar ul {
+    min-height: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .navbar a:hover {
+    color: var(--mainWhite);
+    transition: var(--mainTransition);
+  }
+
+  .sidebar {
+    min-height: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    background: var(--darkGrey);
+  }
+  .sidebar span:hover {
+    cursor: pointer;
+    transition: var(--mainTransition);
+    color: var(--mainBlack);
+  }
+}
